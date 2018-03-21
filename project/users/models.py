@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.Text, unique=True)
     username = db.Column(db.Text, unique=True)
+    name = db.Column(db.Text)
     image_url = db.Column(db.Text)
     header_image_url = db.Column(db.Text)
     bio = db.Column(db.Text)

@@ -21,7 +21,7 @@ body {
 .navbar {
   background-color: #fff;
   height: 46px;
-  border-bottom: 1px solid rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   margin-bottom: 1rem;
   position: relative;
   z-index: 9999;
@@ -164,11 +164,11 @@ nav + .container {
 #profile-avatar {
   width: 200px;
   height: 200px;
-  border: 5px solid #FFF;
+  border: 5px solid #fff;
   margin-top: -120px;
   z-index: 1;
   position: relative;
-  box-shadow: 0 1px 1px rgba(136,153,166,0.15);
+  box-shadow: 0 1px 1px rgba(136, 153, 166, 0.15);
 }
 
 .timeline-image {
@@ -206,9 +206,9 @@ nav + .container {
   background-color: #fff;
   margin-top: -80px;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #CCC;
-  border-top: 1px solid #CCC;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
   height: 60px;
   align-items: center;
 }
@@ -235,7 +235,7 @@ nav + .container {
   color: #657786;
   font-weight: bold;
   font-size: 12px;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   margin-bottom: 0;
 }
 
@@ -273,11 +273,41 @@ nav + .container {
   background-color: #e6ecf0;
 }
 
-#sidebar-username {
+#sidebar-name {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin-top: 30px;
   font-size: 21px;
-  font-weight: bold;
+  font-weight: 700;
   line-height: 28px;
+  word-wrap: break-word;
+}
+
+#sidebar-username {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-top: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  word-wrap: break-word;
+  color: rgb(101, 119, 134);
+}
+
+#sidebar-location {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-top: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  word-wrap: break-word;
+  color: rgb(101, 119, 134);
+}
+
+#sidebar-bio {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-top: px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 40px;
   word-wrap: break-word;
 }
 
@@ -293,7 +323,7 @@ nav + .container {
   width: 100%;
   padding-bottom: 100%;
   border-radius: 5px;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   position: relative;
   background: white;
   margin-top: 20px;
@@ -384,13 +414,13 @@ nav + .container {
 }
 
 .home-hero:before {
-  content:'';
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* Signed in Home */
@@ -474,6 +504,6 @@ nav + .container {
 .single-message {
   font-size: 27px;
   line-height: 32px;
-  letter-spacing: .01em;
+  letter-spacing: 0.01em;
   margin-bottom: 10px;
 }
