@@ -33,14 +33,24 @@ class User(db.Model, UserMixin):
         lazy='dynamic')
 
     def __init__(self,
-                 email,
-                 username,
-                 password,
-                 image_url='/static/images/default-pic.png'):
+                 email=email,
+                 username=username,
+                 name=name,
+                 messages=messages,
+                 password=password,
+                 image_url='/static/images/default-pic.png',
+                 bio=bio,
+                 header_image_url=header_image_url,
+                 location=location,
+                 ):
         self.email = email
         self.username = username
         self.image_url = image_url
         self.password = bcrypt.generate_password_hash(password).decode('UTF-8')
+        self.name = name
+        self.header_image_url = header_image_url
+        self.bio = bio
+        self.location = location
 
     def __repr__(self):
         return f"#{self.id}: email: {self.email} - username: {self.username}"
