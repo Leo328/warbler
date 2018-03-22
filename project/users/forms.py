@@ -6,11 +6,11 @@ from wtforms.widgets import TextArea
 
 class UserForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
-    name = StringField('name', validators=[DataRequired()])
+    name = StringField('name')
     email = StringField('email', validators=[DataRequired(), Email()])
     image_url = StringField('image_url')
-    header_url = StringField('header_url', validators=[DataRequired()])
-    location = StringField('location', validators=[DataRequired()])
+    header_url = StringField('header_url')
+    location = StringField('location')
     password = PasswordField('password', validators=[Length(min=6)])
 
 

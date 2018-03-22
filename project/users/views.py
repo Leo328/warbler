@@ -53,28 +53,6 @@ def signup():
     return render_template('users/signup.html', form=form)
 
 
-@users_blueprint.route('/signup2', methods=["GET", "POST"])
-def signup2():
-    form = UserForm()
-    if request.method == "POST":
-        if form.validate():
-            try:
-                new_user = User(
-                    username=form.username.data,
-                    email=form.email.data,
-                    password=form.password.data)
-                if form.image_url.data:
-                    new_user.image_url = form.image_url.data
-                db.session.add(new_user)
-                db.session.commit()
-                login_user(new_user)
-            except IntegrityError as e:
-                flash({'text': "Username already taken", 'status': 'danger'})
-                return render_template('users/signup.html', form=form)
-            return redirect(url_for('root'))
-    return render_template('users/signup.html', form=form)
-
-
 @users_blueprint.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
