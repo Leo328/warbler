@@ -52,10 +52,8 @@ class User(db.Model, UserMixin):
         self.password = bcrypt.generate_password_hash(password).decode('UTF-8')
 
     likes = db.relationship(
-        "User",
+        "Message",
         secondary=UserLikedMessages,
-        primaryjoin=(UserLikedMessages.c.likes_id == id),
-        secondaryjoin=(UserLikedMessages.c.liked_id == id),
         backref=db.backref('liked_by', lazy='dynamic'), lazy='dynamic')
 
     def __repr__(self):

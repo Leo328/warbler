@@ -260,7 +260,7 @@ nav + .container {
 
 #messages .list-group-item a:not(.message-link) {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 #like-button {
