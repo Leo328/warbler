@@ -10,6 +10,14 @@ FollowersFollowee = db.Table(
     db.CheckConstraint('follower_id != followee_id', name="no_self_follow"))
 
 
+UserLikedMessages = db.Table('likes',
+                             db.Column('id', db.Integer, primary_key=True),
+                             db.Column('liked_id', db.Integer,
+                                       db.ForeignKey('users.id', ondelete="cascade")),
+                             db.Column('likes_id', db.Integer,
+                                       db.ForeignKey('messages.id', ondelete="cascade")))
+
+
 class User(db.Model, UserMixin):
 
     __tablename__ = 'users'
@@ -21,6 +29,7 @@ class User(db.Model, UserMixin):
     image_url = db.Column(db.Text)
     header_image_url = db.Column(db.Text)
     bio = db.Column(db.Text)
+    # HEY THE BIO IS RIGHT HERE
     location = db.Column(db.Text)
     password = db.Column(db.Text)
     messages = db.relationship('Message', backref='user', lazy='dynamic')
@@ -42,6 +51,13 @@ class User(db.Model, UserMixin):
         self.image_url = image_url
         self.password = bcrypt.generate_password_hash(password).decode('UTF-8')
 
+    likes = db.relationship(
+        "User",
+        secondary=UserLikedMessages,
+        primaryjoin=(UserLikedMessages.c.likes_id == id),
+        secondaryjoin=(UserLikedMessages.c.liked_id == id),
+        backref=db.backref('liked_by', lazy='dynamic'), lazy='dynamic')
+
     def __repr__(self):
         return f"#{self.id}: email: {self.email} - username: {self.username}"
 
@@ -51,12 +67,13 @@ class User(db.Model, UserMixin):
     def is_following(self, user):
         return bool(self.following.filter_by(id=user.id).first())
 
-    @classmethod
-    def authenticate(cls, username, password):
-        found_user = cls.query.filter_by(username=username).first()
-        if found_user:
-            is_authenticated = bcrypt.check_password_hash(
-                found_user.password, password)
-            if is_authenticated:
-                return found_user
+
+@classmethod
+def authenticate(cls, username, password):
+    found_user = cls.query.filter_by(username=username).first()
+    if found_user:
+        is_authenticated = bcrypt.check_password_hash(
+            found_user.password, password)
+        if is_authenticated:
+            return found_user
         return False

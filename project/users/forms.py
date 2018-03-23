@@ -11,6 +11,7 @@ class UserForm(FlaskForm):
     image_url = StringField('image_url')
     header_url = StringField('header_url')
     location = StringField('location')
+    bio = StringField('Bio', widget=TextArea())
     password = PasswordField('password', validators=[Length(min=6)])
 
 

@@ -5,6 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_migrate import Migrate
+from flask_login import login_user, logout_user, current_user, login_required
 
 
 import os
@@ -50,7 +51,10 @@ def load_user(id):
 
 @app.route('/')
 def root():
-    messages = Message.query.order_by("timestamp asc").limit(100).all()
+    following_ids = [u.id for u in current_user.following.all()]
+    condition1 = Message.user_id.in_(following_ids)
+    messages = Message.query.filter(condition1).order_by(
+        "timestamp asc").limit(100).all()
     return render_template('home.html', messages=messages)
 # Can we reduce the database queries and only query more when we scroll down, like Facebook?
 

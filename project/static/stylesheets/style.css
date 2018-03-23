@@ -263,6 +263,11 @@ nav + .container {
   z-index: 2;
 }
 
+#like-button {
+  position: relative;
+  z-index: 2;
+}
+
 #messages .list-group-item {
   display: flex;
   align-items: flex-start;

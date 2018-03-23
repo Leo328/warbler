@@ -85,7 +85,7 @@ def logout():
 @ensure_correct_user
 def edit(id):
     return render_template(
-        'users/edit.html', form=UserForm(), user=User.query.get(id))
+        'users/edit.html', form=UserForm(obj=current_user))
 
 
 @users_blueprint.route(
@@ -127,6 +127,10 @@ def show(id):
                 found_user.username = form.username.data
                 found_user.email = form.email.data
                 found_user.image_url = form.image_url.data or None
+                found_user.name = form.name.data or None
+                found_user.location = form.location.data or None
+                found_user.bio = form.bio.data or None
+                # HEY THE BIO IS RIGHT HERE
                 db.session.add(found_user)
                 db.session.commit()
                 return redirect(url_for('users.show', id=id))
